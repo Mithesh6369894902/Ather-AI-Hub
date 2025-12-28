@@ -6,8 +6,6 @@ st.set_page_config(page_title="TextVortex", layout="wide")
 st.title("✍ TextVortex")
 st.caption("Advanced NLP Engine")
 
-# 🔽 PASTE YOUR FULL TextVortex CODE BELOW THIS LINE
-
 import streamlit as st
 import re
 import pandas as pd
