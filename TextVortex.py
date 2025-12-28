@@ -1,12 +1,5 @@
 
 import streamlit as st
-
-st.set_page_config(page_title="TextVortex", layout="wide")
-
-st.title("✍ TextVortex")
-st.caption("Advanced NLP Engine")
-
-import streamlit as st
 import re
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -14,16 +7,17 @@ from collections import Counter
 from wordcloud import WordCloud
 import textstat
 
-# Optional NLTK (NO TOKENIZERS USED)
 import nltk
 from nltk.corpus import stopwords, wordnet
 from nltk.stem import PorterStemmer, WordNetLemmatizer
 from nltk import pos_tag
 
-# ======================================================
-# SAFE NLTK SETUP (NO punkt / no crashes)
-# ======================================================
+st.set_page_config(page_title="TextVortex", layout="wide")
+
+st.title("✍ TextVortex")
+st.caption("Advanced NLP Engine")
 @st.cache_resource
+
 def setup_nltk():
     for r in ["stopwords", "wordnet", "omw-1.4", "averaged_perceptron_tagger"]:
         try:
