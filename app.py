@@ -11,13 +11,13 @@ st.subheader("Unified Artificial Intelligence Platform")
 
 st.markdown("""
 ### Integrated AI Engines
-- 📊 **InfernoData** – Dataset Engineering
-- ✍ **TextVortex** – NLP Intelligence
-- 📈 **AlphaFlux** – Financial Analytics
-- 👁 **VisionBlaze** – Computer Vision
-- 🤖 **ModelCraft X** – Machine Learning Lab
+- 📊 InfernoData — Dataset Engineering
+- ✍️ TextVortex — NLP Intelligence
+- 📈 AlphaFlux — Financial Analytics
+- 👁 VisionBlaze — Computer Vision
+- 🤖 ModelCraft X — Machine Learning Lab
 
-➡️ Use the **sidebar** to navigate between modules.
+⬅️ Use the sidebar to switch modules
 """)
 
 st.success("Multi-page architecture loaded successfully.")
