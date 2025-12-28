@@ -10,3 +10,4 @@ textstat
 wordcloud
 yfinance
 scipy
+
