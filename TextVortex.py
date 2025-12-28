@@ -16,7 +16,8 @@ st.set_page_config(page_title="TextVortex", layout="wide")
 
 st.title("✍ TextVortex")
 st.caption("Advanced NLP Engine")
-@st.cache_resource
+
+# 🔽 PASTE YOUR FULL TextVortex CODE BELOW
 
 def setup_nltk():
     for r in ["stopwords", "wordnet", "omw-1.4", "averaged_perceptron_tagger"]:
