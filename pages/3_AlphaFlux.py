@@ -17,11 +17,11 @@ def safe_float(x):
 # ---------------- CONFIG ----------------
 st.set_page_config(
     page_title="AlphaFlux",
-    page_icon="📈",
+    page_icon="🧠📈",
     layout="wide"
 )
 
-st.title("📈 AlphaFlux")
+st.title("🧠📈 AlphaFlux")
 st.caption("Risk-Aware Stock Trend Forecasting & Decision Intelligence")
 
 # ---------------- UTILITIES ----------------
