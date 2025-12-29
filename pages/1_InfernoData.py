@@ -29,13 +29,13 @@ st.caption("Advanced Dataset Engineering & ML Validation Platform")
 page = st.sidebar.radio(
     "Navigate",
     [
-        "🏠 Home",
-        "🧪 Dataset Generator",
-        "✂️ Dataset Trimmer",
-        "🧠 Classification Execution",
-        "📉 Regression Execution",
-        "🧩 Clustering Execution",
-        "🔗 Association Rule Mining"
+        "Home",
+        "Dataset Generator",
+        "Dataset Trimmer",
+        "Classification Execution",
+        "Regression Execution",
+        "Clustering Execution",
+        "Association Rule Mining"
     ]
 )
 
