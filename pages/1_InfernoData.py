@@ -29,13 +29,13 @@ st.caption("Advanced Dataset Engineering & ML Validation Platform")
 page = st.sidebar.radio(
     "Navigate",
     [
-        "Home",
-        "Dataset Generator",
-        "Dataset Trimmer",
-        "Classification Execution",
-        "Regression Execution",
-        "Clustering Execution",
-        "Association Rule Mining"
+        "🏠 Home",
+        "🧪 Dataset Generator",
+        "✂️ Dataset Trimmer",
+        "🧠 Classification Execution",
+        "📉 Regression Execution",
+        "🧩 Clustering Execution",
+        "🔗 Association Rule Mining"
     ]
 )
 
@@ -51,7 +51,7 @@ def download_csv(df, name="dataset.csv"):
 # ---------------- HOME ---------------- #
 if page == "🏠 Home":
     st.markdown("""
-    ## 📊 InfernoData
+    ## 🔥 InfernoData
     
     **InfernoData** is a dataset-centric ML platform that bridges the gap between  
     **data preparation** and **model validation**.
