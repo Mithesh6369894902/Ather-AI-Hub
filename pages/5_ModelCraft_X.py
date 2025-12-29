@@ -16,12 +16,12 @@ from sklearn.metrics import accuracy_score, r2_score
 RANDOM_STATE = 42
 st.set_page_config(
     page_title="ModelCraft-X",
-    page_icon="🧠",
+    page_icon="🧪🧬",
     layout="wide"
 )
 
 # -------------------- UI HEADER -------------------- #
-st.title("🧠 ModelCraft-X")
+st.title("🧪🧬 ModelCraft-X")
 st.subheader("Cross-Validated AutoML Benchmarking Framework")
 st.caption("Pipeline-based | Explainable | Reproducible")
 
