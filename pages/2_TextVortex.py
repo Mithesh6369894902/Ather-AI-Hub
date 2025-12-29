@@ -45,26 +45,26 @@ def safe_sent_tokenize(text):
 # ======================================================
 st.set_page_config(
     page_title="TextVortex",
-    page_icon="🌀📝",
+    page_icon="🌪️",
     layout="wide"
 )
 
-st.title("🌀📝 TextVortex — Future-Proof NLP Intelligence Engine")
+st.title("🌪️ TextVortex — Future-Proof NLP Intelligence Engine")
 
 page = st.sidebar.radio(
     "Select Module",
     [
-        "Home",
-        "Tokenization",
-        "Stopwords Removal",
-        "POS Tagging",
-        "Stemming",
-        "Lemmatization",
-        "N-Grams",
-        "Keyword Extraction",
-        "Text Statistics",
-        "Text Complexity",
-        "Word Cloud"
+        "🏠 Home",
+        "🔠 Tokenization",
+        "🛑 Stopwords Removal",
+        "🏷️ POS Tagging",
+        "🌱 Stemming",
+        "🌿 Lemmatization",
+        "🔢 N-Grams",
+        "🔑 Keyword Extraction",
+        "📊 Text Statistics",
+        "📈 Text Complexity",
+        "☁️ Word Cloud"
     ]
 )
 
@@ -183,4 +183,5 @@ elif page == "☁️ Word Cloud" and validate():
     ax.imshow(wc, interpolation="bilinear")
     ax.axis("off")
     st.pyplot(fig)
+
 
