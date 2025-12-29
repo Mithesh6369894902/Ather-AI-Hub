@@ -45,11 +45,11 @@ def safe_sent_tokenize(text):
 # ======================================================
 st.set_page_config(
     page_title="TextVortex",
-    page_icon="🌪️",
+    page_icon="🌀📝",
     layout="wide"
 )
 
-st.title("🌪️ TextVortex — Future-Proof NLP Intelligence Engine")
+st.title("🌀📝 TextVortex — Future-Proof NLP Intelligence Engine")
 
 page = st.sidebar.radio(
     "Select Module",
