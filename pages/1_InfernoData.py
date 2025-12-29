@@ -18,11 +18,11 @@ from mlxtend.frequent_patterns import apriori, association_rules
 # ---------------- CONFIG ---------------- #
 st.set_page_config(
     page_title="InfernoData",
-    page_icon="🔥",
+    page_icon="🔥📊",
     layout="wide"
 )
 
-st.title("🔥 InfernoData")
+st.title("🔥📊 InfernoData")
 st.caption("Advanced Dataset Engineering & ML Validation Platform")
 
 # ---------------- SIDEBAR ---------------- #
