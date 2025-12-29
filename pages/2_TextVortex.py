@@ -54,17 +54,17 @@ st.title("🌀📝 TextVortex — Future-Proof NLP Intelligence Engine")
 page = st.sidebar.radio(
     "Select Module",
     [
-        "🏠 Home",
-        "🔠 Tokenization",
-        "🛑 Stopwords Removal",
-        "🏷️ POS Tagging",
-        "🌱 Stemming",
-        "🌿 Lemmatization",
-        "🔢 N-Grams",
-        "🔑 Keyword Extraction",
-        "📊 Text Statistics",
-        "📈 Text Complexity",
-        "☁️ Word Cloud"
+        "Home",
+        "Tokenization",
+        "Stopwords Removal",
+        "POS Tagging",
+        "Stemming",
+        "Lemmatization",
+        "N-Grams",
+        "Keyword Extraction",
+        "Text Statistics",
+        "Text Complexity",
+        "Word Cloud"
     ]
 )
 
