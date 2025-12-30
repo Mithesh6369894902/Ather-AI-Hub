@@ -6,7 +6,7 @@ st.set_page_config(
     layout="wide"
 )
 
-st.title("🌐 Ather AI Hub")
+st.title("🌐 ATHERIUM")
 st.markdown("### All-in-one intelligence for modern applications.")
 
 st.success("If you can see this, Streamlit is running correctly.")
