@@ -1,7 +1,7 @@
 import streamlit as st
 
 st.set_page_config(
-    page_title="Ather AI Hub",
+    page_title="ATHERIUM",
     page_icon="🌐",
     layout="wide"
 )
