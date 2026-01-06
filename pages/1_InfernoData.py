@@ -170,48 +170,46 @@ elif page == "🧩 Clustering Execution":
 elif page == "🔗 Association Rule Mining":
     st.header("🔗 Association Rule Mining")
 
-    st.info("📌 Upload a **binary transaction dataset** (1/0 or True/False values only).")
+    st.info(
+        "📌 This module accepts **transactional datasets** "
+        "(e.g., milk,bread,butter per row) and automatically "
+        "converts them into binary format."
+    )
 
     file = st.file_uploader("Upload Transaction Dataset (CSV)", type=["csv"])
 
     if file is not None:
-        df = pd.read_csv(file)
+        raw_df = pd.read_csv(file, header=None)
 
-        st.subheader("📄 Dataset Preview")
-        st.dataframe(df.head())
+        st.subheader("📄 Raw Transactions")
+        st.dataframe(raw_df.head())
 
-        # ---------------- VALIDATION ---------------- #
-        if df.empty:
-            st.error("❌ Uploaded dataset is empty.")
-            st.stop()
+        # ---------------- TRANSACTION → BINARY ---------------- #
+        transactions = raw_df.iloc[:, 0].astype(str).apply(
+            lambda x: [item.strip() for item in x.split(",")]
+        )
 
-        # Convert True/False → 1/0
-        df = df.replace({True: 1, False: 0})
+        all_items = sorted({item for sublist in transactions for item in sublist})
 
-        # Check binary validity
-        invalid_cols = [
-            col for col in df.columns
-            if not set(df[col].dropna().unique()).issubset({0, 1})
-        ]
+        binary_df = pd.DataFrame(0, index=range(len(transactions)), columns=all_items)
 
-        if invalid_cols:
-            st.error(
-                f"❌ These columns are NOT binary (0/1): {invalid_cols}\n\n"
-                "Apriori requires binary transaction data."
-            )
-            st.stop()
+        for i, items in enumerate(transactions):
+            binary_df.loc[i, items] = 1
+
+        st.subheader("🔁 Converted Binary Dataset")
+        st.dataframe(binary_df.head())
 
         # ---------------- PARAMETERS ---------------- #
         support = st.slider("Min Support", 0.01, 0.5, 0.05)
         confidence = st.slider("Min Confidence", 0.1, 1.0, 0.5)
 
-        # ---------------- EXECUTION ---------------- #
+        # ---------------- APRIORI ---------------- #
         if st.button("🔥 Generate Association Rules"):
             with st.spinner("Mining frequent itemsets..."):
-                freq = apriori(df, min_support=support, use_colnames=True)
+                freq = apriori(binary_df, min_support=support, use_colnames=True)
 
             if freq.empty:
-                st.warning("⚠️ No frequent itemsets found. Try lowering support.")
+                st.warning("⚠️ No frequent itemsets found. Lower support.")
                 st.stop()
 
             rules = association_rules(
@@ -221,13 +219,13 @@ elif page == "🔗 Association Rule Mining":
             )
 
             if rules.empty:
-                st.warning("⚠️ No rules generated. Try lowering confidence.")
+                st.warning("⚠️ No rules generated. Lower confidence.")
                 st.stop()
 
             st.success(f"✅ Generated {len(rules)} rules")
 
-            st.subheader("📊 Association Rules")
             st.dataframe(
                 rules[["antecedents", "consequents", "support", "confidence", "lift"]]
                 .sort_values("lift", ascending=False)
             )
+
