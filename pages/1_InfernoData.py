@@ -167,26 +167,67 @@ elif page == "🧩 Clustering Execution":
             st.pyplot(fig)
 
 # ---------------- ASSOCIATION ---------------- #
-elif page == "Association Rule Mining":
-    file = st.file_uploader("Upload Transaction CSV", type=["csv"])
-    if file:
+elif page == "🔗 Association Rule Mining":
+    st.header("🔗 Association Rule Mining")
+
+    st.info("📌 Upload a **binary transaction dataset** (1/0 or True/False values only).")
+
+    file = st.file_uploader("Upload Transaction Dataset (CSV)", type=["csv"])
+
+    if file is not None:
         df = pd.read_csv(file)
 
+        st.subheader("📄 Dataset Preview")
+        st.dataframe(df.head())
+
+        # ---------------- VALIDATION ---------------- #
+        if df.empty:
+            st.error("❌ Uploaded dataset is empty.")
+            st.stop()
+
+        # Convert True/False → 1/0
+        df = df.replace({True: 1, False: 0})
+
+        # Check binary validity
+        invalid_cols = [
+            col for col in df.columns
+            if not set(df[col].dropna().unique()).issubset({0, 1})
+        ]
+
+        if invalid_cols:
+            st.error(
+                f"❌ These columns are NOT binary (0/1): {invalid_cols}\n\n"
+                "Apriori requires binary transaction data."
+            )
+            st.stop()
+
+        # ---------------- PARAMETERS ---------------- #
         support = st.slider("Min Support", 0.01, 0.5, 0.05)
         confidence = st.slider("Min Confidence", 0.1, 1.0, 0.5)
 
-        if st.button("Generate Rules"):
-            transactions = df.iloc[:, 0].dropna().astype(str).apply(lambda x: x.split(",")).tolist()
-
-            te = TransactionEncoder()
-            te_array = te.fit(transactions).transform(transactions)
-            df_bin = pd.DataFrame(te_array, columns=te.columns_)
-
-            freq = apriori(df_bin, min_support=support, use_colnames=True)
+        # ---------------- EXECUTION ---------------- #
+        if st.button("🔥 Generate Association Rules"):
+            with st.spinner("Mining frequent itemsets..."):
+                freq = apriori(df, min_support=support, use_colnames=True)
 
             if freq.empty:
-                st.warning("No frequent itemsets.")
-            else:
-                rules = association_rules(freq, metric="confidence", min_threshold=confidence)
-                st.dataframe(rules[["antecedents", "consequents", "support", "confidence", "lift"]])
-                download_csv(rules, "association_rules.csv")
+                st.warning("⚠️ No frequent itemsets found. Try lowering support.")
+                st.stop()
+
+            rules = association_rules(
+                freq,
+                metric="confidence",
+                min_threshold=confidence
+            )
+
+            if rules.empty:
+                st.warning("⚠️ No rules generated. Try lowering confidence.")
+                st.stop()
+
+            st.success(f"✅ Generated {len(rules)} rules")
+
+            st.subheader("📊 Association Rules")
+            st.dataframe(
+                rules[["antecedents", "consequents", "support", "confidence", "lift"]]
+                .sort_values("lift", ascending=False)
+            )
